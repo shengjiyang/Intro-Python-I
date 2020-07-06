@@ -31,14 +31,31 @@ b = (-14, 72)
 print("Distance is: {:.2f}".format(dist(a, b)))
 
 
-
 # Write a function `print_tuple` that prints all the values in a tuple
 
-# YOUR CODE HERE
+def print_tuple(t):
+    """
+    Takes a tuple or any value entered in parentheses as its input and
+    prints all the values in that tuple or in parentheses on separate
+    lines.
+    """
+    if type(t) == tuple:
+        for value in t:
+            print(value)
+    else:
+        raise TypeError("Expected tuple input, received non-tuple input.")
 
 t = (1, 2, 5, 7, 99)
 print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
 # Declare a tuple of 1 element then print it
-u = (1)  # What needs to be added to make this work?
+# This by definition is not a tuple, but rather an integer;
+# integers do not have length in python.
+  
+# u = (1)  # What needs to be added to make this work? - a comma
+# print(type(u))
+# print_tuple(u)
+
+u = (1,)
+print(type(u))
 print_tuple(u)
