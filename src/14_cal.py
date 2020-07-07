@@ -27,29 +27,37 @@ print out a calendar for April in 2015, but if you omit either the year or both 
 it should use today’s date to get the month and year.
 """
 
+from datetime import datetime
 import sys
 import calendar
-from datetime import datetime
 
-print("calendar")
-print("----" * 5)
-print(dir(calendar))
 
-print("\n")
-
-print("datetime")
-print("----" * 5)
-print(dir(datetime))
+# Allows for viewing number of arguments entered by command line.
+print("Number of arguments:", len(sys.argv), "arugments")
+print("Argument list", str(sys.argv))
 
 print("\n")
 
-print(type(datetime.now()))
-print(datetime.now())
-print(datetime.now().month)
-print(datetime.now().year)
+tc = calendar.HTMLCalendar(firstweekday=0)
 
-print("\n")
+if len(sys.argv) == 3:
+  print(tc.formatmonth(int(sys.argv[2]), int(sys.argv[1])))
 
-x = input("14_cal.py [month] [year]: ").split(",")
+elif len(sys.argv) == 2:
+  print(tc.formatmonth(datetime.now().year, int(sys.argv[1])))
 
-print(x[0], x[1])
+elif len(sys.argv) == 1:
+
+  message = """
+  You have passed no arguments into the command line. The program has outputted the
+  calender.HTMLCalender text for the current month and year below by default. In order to
+  create your own custom HTML calendar, input the month and year as additional arguments in
+  the terminal like so:
+  
+  python 14_cal.py month year.
+  """
+  print(message)
+
+  print("\n")
+
+  print(tc.formatmonth(datetime.now().year, datetime.now().month))
